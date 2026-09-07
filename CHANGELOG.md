@@ -7,6 +7,19 @@
 
 
  
+## v0.19.0 (2026-09-07)
+ 
+### Features
+ 
+
+
+- Add sujit/sukando abstract ([`eaa7dfc`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/eaa7dfc6cc57096ec755ec62ea036d589a9633d7))
+
+
+
+ 
+ 
+ 
 ## v0.18.0 (2026-09-04)
  
 ### Documentation
