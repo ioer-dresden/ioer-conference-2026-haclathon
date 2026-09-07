@@ -7,6 +7,50 @@
 
 
  
+## v0.18.0 (2026-09-04)
+ 
+### Documentation
+ 
+
+
+- Register chapters 204 and 205 in toc and contributors list ([`486ecb2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/486ecb2be60aa66b55f1ba63b2bbf28d5d16ef16))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- **community**: Integrate chapters 204 (tango) and 205 (tasnim) ([`6763835`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/6763835a150df02cb370b4bc32ccc38c62e16689))
+
+
+
+ 
+
+
+- Save in jupyterlab and create sibling jupytertext ([`9afb130`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/9afb130dcf1f111e6fb6d4b9d83894222eeb8844))
+
+
+
+ 
+
+
+- Add urban green haclathon contribution ([`7c7d38f`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/7c7d38f71c2381503057875fc4d43efaef5c8e0f))
+
+
+
+ 
+
+
+- Add storymap chapter ([`5109144`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/5109144850ff5348f3c8b57173e84e4a17fb77ff))
+
+
+
+ 
+ 
+ 
 ## v0.17.1 (2026-08-27)
  
 ### Bug fixes
