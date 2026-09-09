@@ -35,7 +35,7 @@
 #
 # Here I would like to show how to process the data and write the config file in Python, using a story map template to put the story together.
 #
-# The template behind it is written with HTML, CSS and JavaScript, with [MapLibre GL](https://maplibre.org/maplibre-gl-js/docs/examples/fly-to-a-location-based-on-scroll-position/) drawing the map and [Scrollama](https://github.com/russellsamora/scrollama#scrollamajs) watching the scroll position. If you know those languages, you could download the template directly and make more customised changes. If you do not, you never have to open them, because everything a story needs sits in one `_config.json` file: a cover, then a list of chapters, and each chapter is a title, a description, an alignment for the text box (lefty, righty, centered or fully) and a camera position of center, zoom, bearing and pitch.
+# The template behind it is written with HTML, CSS and JavaScript, with [MapLibre GL](https://maplibre.org/maplibre-gl-js/docs/examples/fly-to-a-location-based-on-scroll-position/) drawing the map and [Scrollama](https://github.com/russellsamora/scrollama#scrollamajs) watching the scroll position. If you know those languages, the template sits in `py/modules/storymap_template/` and you could edit it directly for more customised changes. If you do not, you never have to open them, because everything a story needs sits in one `_config.json` file: a cover, then a list of chapters, and each chapter is a title, a description, an alignment for the text box (lefty, righty, centered or fully) and a camera position of center, zoom, bearing and pitch.
 #
 # The way I show here is with a Jupyter notebook. Start from exploring the data (following the starter kit tutorial), then write the chapters, then save them into the story map config. The final product is generated inside the storymap folder, with index.html, the script, the styles, the assets and `_config.json` all in one place, so you can open it locally or upload the whole folder to a web host.
 #
@@ -45,7 +45,7 @@
 # - `geojson_layer`: configure how a GeoJSON file should be drawn, as colour, size, opacity and outline. Writing it apart from the chapter keeps the styling next to the palette it belongs to, and lets two chapters draw the same file, sharing one copy of the data instead of fetching it twice.
 # - `preview_map`: show an ipyleaflet map with a live readout of center and zoom underneath, already converted to what the template wants, longitude first and one zoom level lower than Leaflet, so you can find a camera position by dragging the map instead of guessing numbers.
 # - `chapter_preview`: draw the chapter's text box over a live map, so you can drag the map around until the framing looks right. It might look a bit different from the final page, since a different map rendering library is used here, but it gives a quick view of the map and the chapter box position. The line underneath gives you the center and zoom already converted for the template, ready to paste into the chapter.
-# - `save_story`: validate the chapter writing and save the configuration. It copies the template, the styles and the assets into the site folder, then runs the same checks over the finished config. If anything is wrong it reports every problem at once, and leaves your previous build untouched.
+# - `save_story`: validate the chapter writing and save the configuration. It copies the template and the styles into the site folder, brings along everything sitting in your `assets` folder, then runs the same checks over the finished config. If anything is wrong it reports every problem at once, and leaves your previous build untouched.
 #
 
 # %% [markdown]
@@ -73,6 +73,7 @@
 import json
 import math
 import os
+import sys
 import time
 from collections import Counter
 from pathlib import Path
@@ -87,10 +88,19 @@ from ipyleaflet import GeoJSON, Map, TileLayer, basemaps, projections
 from owslib.wcs import WebCoverageService
 from pyproj import Transformer
 
-# storybuilder.py sits next to this notebook and does the story map side:
-# writing chapters, previewing them on a map, and saving the site.
-from storybuilder import (chapter_preview, geojson_layer, preview_map,
-                          save_story, write_chapter)
+# storybuilder.py lives in py/modules, next to tools.py, and does the story map
+# side: writing chapters, previewing them on a map, and saving the site. It is
+# imported the same way the other chapters import modules/tools.py.
+module_path = str(Path.cwd().parents[0] / "py")
+if module_path not in sys.path:
+    sys.path.append(module_path)
+from modules.storybuilder import (chapter_preview, geojson_layer, preview_map,
+                                  save_story, write_chapter)
+
+# Everything the story map needs beyond the template - the figures saved below,
+# the GeoJSON layers, the cover image - lives here, and save_story copies the
+# whole folder into the site at the end.
+Path("assets").mkdir(exist_ok=True)
 
 
 # %% [markdown]
@@ -625,9 +635,6 @@ print(f"\n{POINTS_FILE}  {POINTS_FILE.stat().st_size/1e6:.1f} MB  "
       f"{len(features):,} points")
 
 # %%
-from storybuilder import chapter_preview
-
-# %%
 # radius setting
 DOT_SIZE = ["interpolate", ["linear"], ["zoom"], 5, 2.2, 10, 5]
 
@@ -917,9 +924,15 @@ footer = (
 # ## Export: write the story map
 #
 # Now that the story is finished, `save_story` copies the page, its script and
-# its styles out of `template/`, brings the assets along, and writes
-# `_config.json` beside them. From that point the folder is self-contained
-# and knows nothing about Python.
+# its styles out of the template in `py/modules/storymap_template/`, brings the
+# assets along, and writes `_config.json` beside them. From that point the folder
+# is self-contained and knows nothing about Python.
+#
+# Anything your story needs beyond the template - a cover image, a picture for a
+# chapter card, a GeoJSON layer - goes in the `assets` folder next to this
+# notebook, and every file in there is copied into the site. That is also how the
+# published page finds them again: the paths written into the chapters above,
+# `assets/silhouette.png` and the rest, are relative to the site root.
 #
 # The config is validated against a JSON schema before it is written, so a mismatch
 # is reported here instead of failing silently in the browser.
@@ -938,16 +951,7 @@ config = {
     "footer": footer,
 }
 
-site = save_story(
-    config,
-    site="resources/storymap",
-    extra_assets=["assets/heron_points.geojson",
-                  "assets/species_records.png",
-                  "assets/species_urbanity.png",
-                  "assets/silhouette.png",
-                  "assets/heron_illustration.jpg",
-                  "assets/hsi_trees.geojson"],
-)
+site = save_story(config, site="../resources/storymap")
 print(f"{site}/_config.json written, {len(config['chapters'])} chapters")
 
 # %% [markdown]
@@ -956,7 +960,8 @@ print(f"{site}/_config.json written, {len(config['chapters'])} chapters")
 # The story map is a folder of static files, so once this notebook is published it
 # sits beside the page and can be embedded directly.
 #
-# To check it locally, serve the folder first and open it in a browser:
+# To check it locally, serve the folder first and open it in a browser, from the
+# repository root:
 #
 # ```
 # python -m http.server 8000 --directory resources
