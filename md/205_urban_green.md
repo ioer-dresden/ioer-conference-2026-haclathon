@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-```python deletable=true tags=["hide-cell"] slideshow={"slide_type": ""} editable=true
+```python deletable=true tags=["remove-cell"] slideshow={"slide_type": ""} editable=true
 import sys, os
 from pathlib import Path
 
@@ -27,7 +27,7 @@ pyexec = sys.executable
 !../py/modules/pkginstall.sh "{pyexec}" geopandas matplotlib requests
 ```
 
-```python slideshow={"slide_type": ""} tags=["hide-cell"] editable=true deletable=true
+```python slideshow={"slide_type": ""} tags=["remove-cell"] editable=true deletable=true
 #import cell
 import geopandas as gpd
 import matplotlib.pyplot as plt

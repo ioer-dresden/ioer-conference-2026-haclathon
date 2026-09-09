@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-<!-- #region editable=true id="415d830e" slideshow={"slide_type": ""} -->
+<!-- #region tags=["remove-cell"] editable=true id="415d830e" slideshow={"slide_type": ""} -->
 **Setup**
 
 **Colab**: run the next cell.
@@ -22,7 +22,7 @@ jupyter:
 The `liberty` basemap needs no account. (Other leafmap styles ask for a MapTiler key.)
 <!-- #endregion -->
 
-```python colab={"base_uri": "https://localhost:8080/"} id="7e6514bb" outputId="7f0cd5ef-8faa-4fa9-a95f-fa95d055152c" slideshow={"slide_type": ""} editable=true
+```python id="7e6514bb" outputId="7f0cd5ef-8faa-4fa9-a95f-fa95d055152c" editable=true colab={"base_uri": "https://localhost:8080/"} slideshow={"slide_type": ""} tags=["remove-cell"]
 # Colab needs these. Binder and a local `uv sync` already have them.
 import sys
 
@@ -30,7 +30,7 @@ if "google.colab" in sys.modules:
     %pip install -q "leafmap[maplibre]" geopandas wbgapi mapclassify plotnine "ipyvuetify<3"
 ```
 
-```python id="c8d98073" editable=true slideshow={"slide_type": ""}
+```python id="c8d98073" editable=true slideshow={"slide_type": ""} tags=["remove-cell"]
 import os
 from pathlib import Path
 
