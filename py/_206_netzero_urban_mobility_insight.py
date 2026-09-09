@@ -12,7 +12,7 @@
 #     name: python3
 # ---
 
-# %% [markdown] tags=["remove-cell"] editable=true id="415d830e" slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} id="415d830e" tags=["remove-cell"]
 # **Setup**
 #
 # **Colab**: run the next cell.
@@ -21,14 +21,14 @@
 #
 # The `liberty` basemap needs no account. (Other leafmap styles ask for a MapTiler key.)
 
-# %% id="7e6514bb" outputId="7f0cd5ef-8faa-4fa9-a95f-fa95d055152c" editable=true colab={"base_uri": "https://localhost:8080/"} slideshow={"slide_type": ""} tags=["remove-cell"]
+# %% colab={"base_uri": "https://localhost:8080/"} outputId="7f0cd5ef-8faa-4fa9-a95f-fa95d055152c" tags=["remove-cell"] slideshow={"slide_type": ""} editable=true id="7e6514bb"
 # Colab needs these. Binder and a local `uv sync` already have them.
 import sys
 
 if "google.colab" in sys.modules:
     # %pip install -q "leafmap[maplibre]" geopandas wbgapi mapclassify plotnine "ipyvuetify<3"
 
-# %% id="c8d98073" editable=true slideshow={"slide_type": ""} tags=["remove-cell"]
+# %% editable=true id="c8d98073" tags=["remove-cell"] slideshow={"slide_type": ""}
 import os
 from pathlib import Path
 
@@ -49,23 +49,26 @@ OUT = Path("../outputs") if Path.cwd().name == "scripts" else Path("outputs")
 (OUT / "html").mkdir(parents=True, exist_ok=True)
 (OUT / "figures").mkdir(parents=True, exist_ok=True)
 
-# %% [markdown] editable=true slideshow={"slide_type": ""}
-# {warning}
-# This chapter is a work in progress.
-
 # %% [markdown] slideshow={"slide_type": ""} editable=true
+# ```markdown
+# :::{warning}
+# This chapter is a work in progress.
+# :::
+# ```
+
+# %% [markdown] editable=true slideshow={"slide_type": ""}
 # # Lets explore some spatial insight on sustainable urban development and mobility infrastructure across geographical scales
 #
 # * **Authors**: Sujit Sikder (IOER) & Sukanto Das (ZALF)
 # * **Topics**:  Urbanisation, Transport Emissions, World Bank Open Data, Interactive Maps, Reproducible Research
 # *  **Badges**: ![Interactive](https://img.shields.io/badge/Type-Interactive_Code-blue?style=flat-square) ![Colab](https://img.shields.io/badge/Colab-Tested-yellow?style=flat-square&logo=googlecolab&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter4NFDI-Ready-orange?style=flat-square&logo=jupyter)
 
-# %% [markdown]
+# %% [markdown] editable=true slideshow={"slide_type": ""}
 # ## Abstract
 # We explore multi-level spatial insights into urban development and sustainable urban mobility across geographical scales. We adopt curated data from global open data sources and established indicator systems, applying comparative statistical analysis across continents to identify spatial patterns, disparities, and development trajectories. A data-harvesting workflow is demonstrated following reproducibility principles using R and Python, integrating statistical analysis, geospatial processing, and visualization. At the lowest possible spatial resolution, urban grid-level mobility indicators derived from open datasets are integrated to investigate the spatio-temporal dynamics of local public transit infrastructure and services across places in Germany. The workflow demonstrates how heterogeneous FAIR and open spatial data can be integrated and analysed to support evidence-based understanding of converging challenges related to climate change and decarbonization, while motivating pathways towards sustainability transformation through technological innovation, open science, and datafication. Further research remains open to exploring qualitative dimensions at different spatial scales and places.
 #
 
-# %% [markdown] id="5a2ead53"
+# %% [markdown] id="5a2ead53" slideshow={"slide_type": ""} editable=true
 # ## Introduction: 
 #
 # Exploring on data source and scale, this chapter has two parts: 
@@ -139,7 +142,7 @@ start_year, end_year = 1975, 2023
 # Retired series leave the WDI database, so asking WDI what it still knows is the
 # test. Better a clear error here than a confusing one later.
 
-# %% outputId="58ffb285-1714-4312-a197-7df7eebdd2f9" colab={"base_uri": "https://localhost:8080/"} id="c74788c2"
+# %% id="c74788c2" outputId="58ffb285-1714-4312-a197-7df7eebdd2f9" colab={"base_uri": "https://localhost:8080/"}
 def check_indicators(codes, db=2):
     """Fail loudly, naming any code WDI no longer serves."""
     live = {s["id"] for s in wb.series.list(codes, db=db)}
@@ -157,7 +160,7 @@ check_indicators(study_indicators)
 # We ask only for what the question needs: these five indicators, for Germany, the
 # seven World Bank regions and the world, from 1975 onwards.
 
-# %% outputId="cd4a6fea-9f0c-4e7a-d321-eb2aa4111dcb" colab={"base_uri": "https://localhost:8080/", "height": 242} id="6df9b40d"
+# %% outputId="cd4a6fea-9f0c-4e7a-d321-eb2aa4111dcb" colab={"height": 242, "base_uri": "https://localhost:8080/"} id="6df9b40d"
 # wbgapi has no "regions_only", so we take the seven WDI regional aggregates -
 # the entries with a numeric id - and add Germany and the world.
 regions = [r["code"] for r in wb.region.list() if r["id"]]
@@ -186,7 +189,7 @@ panel.head()
 # points are the transport share of national CO₂ — sized by how urban the
 # country is.
 
-# %% colab={"base_uri": "https://localhost:8080/", "height": 717} outputId="a7f8be41-50f9-4683-facc-2d7f70e96717" id="aec318a0"
+# %% colab={"height": 717, "base_uri": "https://localhost:8080/"} outputId="a7f8be41-50f9-4683-facc-2d7f70e96717" id="aec318a0"
 
 
 myplot = (
@@ -235,7 +238,7 @@ myplot
 # we take **the latest year each country actually reported**, and keep that year
 # alongside the value.
 
-# %% colab={"height": 224, "base_uri": "https://localhost:8080/"} id="07bbe40c" outputId="b41b449e-130e-433c-f6f7-47f145db18ee"
+# %% id="07bbe40c" outputId="b41b449e-130e-433c-f6f7-47f145db18ee" colab={"height": 224, "base_uri": "https://localhost:8080/"}
 # mrnev=1  -> latest year each country actually reported
 # skipAggs -> countries only, no regional aggregates
 wide = wb.data.DataFrame(
@@ -285,7 +288,7 @@ print(f"{LEGEND_TITLE}: {wide[INDICATOR].notna().sum()} countries reporting, "
 # The cell reports the two ways a country can end up grey — no match, or no value —
 # because they look identical on the map and need opposite fixes.
 
-# %% outputId="c868135e-7331-41e0-8322-8a6a757ba7f1" colab={"base_uri": "https://localhost:8080/"} id="e24cde1f"
+# %% id="e24cde1f" outputId="c868135e-7331-41e0-8322-8a6a757ba7f1" colab={"base_uri": "https://localhost:8080/"}
 COUNTRIES_URL = (
     "https://github.com/opengeos/datasets/releases/download/vector/countries.geojson"
 )
@@ -393,9 +396,9 @@ build_globe(gdf, INDICATOR, LEGEND_TITLE, CMAP)
 # Reproducing a figure is the easy half. The interesting half is asking the data
 # something it was not originally asked.
 
-# %% [markdown]
+# %% [markdown] editable=true slideshow={"slide_type": ""}
 # ## Part two
-#
+# ```
 # # using ioer data repo api
 #
 # # country level point density visualization
@@ -407,9 +410,9 @@ build_globe(gdf, INDICATOR, LEGEND_TITLE, CMAP)
 # # city level frequency eda
 # # https://github.com/ssujit/public_transit_germany/blob/main/jupyter_notebook/1_exploratory_data_analysis.ipynb
 # # https://github.com/ssujit/public_transit_germany/blob/main/jupyter_notebook/3_spatial_statistics_neighborhood.ipynb
-#
+# ```
 
-# %% [markdown] id="c1f6dfef"
+# %% [markdown] editable=true slideshow={"slide_type": ""} id="c1f6dfef"
 # ## Conclusion
 #
 # This chapter moves from:
@@ -423,7 +426,7 @@ build_globe(gdf, INDICATOR, LEGEND_TITLE, CMAP)
 # notebook re-run next year gives next year's answer — including a loud failure if
 # an indicator has been retired in the meantime.
 
-# %% [markdown] id="03e39b52"
+# %% [markdown] editable=true id="03e39b52" slideshow={"slide_type": ""}
 # ## Appendix: browse the catalogue
 #
 # Looking for a different indicator? `.list()` gives you dicts; wrap them in a
