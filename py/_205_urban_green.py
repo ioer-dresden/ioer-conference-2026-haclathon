@@ -5,14 +5,14 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.19.3
+#       jupytext_version: 1.19.5
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
 
-# %% deletable=true slideshow={"slide_type": ""} editable=true
+# %% deletable=true tags=["hide-cell"] slideshow={"slide_type": ""} editable=true
 import sys, os
 from pathlib import Path
 
@@ -26,14 +26,14 @@ if 'google.colab' in sys.modules:
 pyexec = sys.executable
 # !../py/modules/pkginstall.sh "{pyexec}" geopandas matplotlib requests
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} tags=["hide-cell"] editable=true deletable=true
 #import cell
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import requests
 
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
 # # 🌿 Urban Green for Climate Regulation
 #
 # * **Authors**: Marzan Tasnim Oyshi (IOER) 
@@ -86,7 +86,7 @@ import requests
 #
 # This notebook explores that question using an openly available research dataset.
 
-# %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
+# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
 # ## 2. From publication to reusable research data
 #
 # The analysis is based on the ioerDATA replication package:
@@ -110,7 +110,7 @@ import requests
 #
 # Instead, we can directly inspect and reuse the underlying research data.
 
-# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
 # ## ♻️ Reproducibility first
 #
 # A scientific figure is much more useful when we can understand:
@@ -124,7 +124,7 @@ import requests
 #
 # The same data can then be reused for questions that were not necessarily part of the original publication.
 
-# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
 # ## 3. Access the replication package
 #
 # The dataset is published through **ioerDATA**, which is based on Dataverse.
@@ -133,7 +133,7 @@ import requests
 #
 # This is useful because the source of the data becomes part of the analysis itself.
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
+# %% deletable=true slideshow={"slide_type": ""} editable=true
 dataset_doi = "doi:10.71830/AFW3N3"
 
 api_url = (
@@ -147,7 +147,7 @@ files = metadata["data"]["latestVersion"]["files"]
 for item in files:
     print(item["dataFile"]["filename"])
 
-# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
 # ## 3. Download the replication package
 #
 # The replication package is published on **ioerDATA** and can be accessed through the Dataverse API.
@@ -156,7 +156,7 @@ for item in files:
 #
 # > ⚠️ **Keep your API token private.** Never save it in the notebook or commit it to GitHub.
 
-# %% slideshow={"slide_type": ""} editable=true deletable=true
+# %% deletable=true editable=true slideshow={"slide_type": ""}
 from pathlib import Path
 from getpass import getpass
 import requests
@@ -223,12 +223,12 @@ for item in files:
 # > **FAIR does not necessarily mean open.**  
 # > Restricted data can still be FAIR when access conditions are clearly described and authorised users can access the data through a transparent process.
 
-# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
 # ## 4. Load the spatial data
 #
 # The main spatial dataset is stored as a GeoPackage. We load it with GeoPandas and inspect the available indicators before mapping them.
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
+# %% editable=true slideshow={"slide_type": ""} deletable=true
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
@@ -241,22 +241,22 @@ print(f"CRS: {gdf.crs}")
 
 gdf.head()
 
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
 # This is the checkpoint where you identify the exact columns for:
 #
 # >city name, cooling capacity, population benefit
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
+# %% editable=true slideshow={"slide_type": ""} deletable=true
 gdf.columns.tolist()
 
-# %% [markdown] deletable=true editable=true slideshow={"slide_type": ""}
+# %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
 # ## 5. Where is climate-regulation capacity high?
 #
 # Urban green infrastructure provides different levels of cooling capacity across German cities.
 #
 # Mapping the indicator helps reveal where climate-regulation potential is comparatively high or low.
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} deletable=true editable=true
 #prepare map context
 import matplotlib.patheffects as pe
 
@@ -275,7 +275,7 @@ major_cities = {
 }
 labels = gdf_wgs[gdf_wgs[name_col].isin(major_cities)]
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
+# %% deletable=true editable=true slideshow={"slide_type": ""}
 #map the indicator
 fig, ax = plt.subplots(figsize=(9, 9))
 
@@ -333,7 +333,7 @@ ax.set_title("Cities with High Population Benefit from UGI")
 plt.tight_layout()
 plt.show()
 
-# %% [markdown] deletable=true editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
 # ## Try it yourself
 #
 # Open data makes it possible to move beyond reproduction.
@@ -357,4 +357,4 @@ plt.show()
 #
 # The ioerDATA replication package makes this evidence accessible for reproduction, exploration, and further research.
 
-# %% slideshow={"slide_type": ""} editable=true deletable=true
+# %% deletable=true slideshow={"slide_type": ""} editable=true
