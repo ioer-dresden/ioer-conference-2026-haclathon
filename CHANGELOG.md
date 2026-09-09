@@ -7,6 +7,19 @@
 
 
  
+## v0.20.0 (2026-09-09)
+ 
+### Features
+ 
+
+
+- **community**: Integrate chapter 206 by sujit sikder & sukanto das ([`54eb2b2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/54eb2b2612688f4b4c03df7d7e37b9e526646af6))
+
+
+
+ 
+ 
+ 
 ## v0.19.0 (2026-09-07)
  
 ### Features
