@@ -51,11 +51,12 @@ We follow the open-science principles of the **CRediT (Contributor Roles Taxonom
 * **Gongmingyue Tang**  
   *Chapter:* [204: A Story Map about Herons](notebooks/204_ToStoryMap_heronUrban)  
   *Roles:* Interactive StoryMap Development, Urban Biodiversity & Habitat Analysis, Public Knowledge Transfer.
-* **Marzan Tasnim Oyshi & Claudia Cruickshank**  
+* **Marzan Tasnim Oyshi**  
   *Chapter:* [205: Urban Green Cooling Benefits with ioerDATA](notebooks/205_urban_green)  
   *Roles:* ioerDATA Replication Package, Urban Climate Regulation Analysis, Gamified Learning Workflow.
-* **Sujit Kumar Sikder & Sukanto Das**  
-  *Roles:* Circularity and Transformative Governance Contribution.
+* **Dr. Sujit Kumar Sikder & Sukanto Das** 
+  *Chapter:* 6: NetZero Urban Mobility Insight(notebooks/206_netzero_urban_mobility_insight)
+  *Roles:* GTFS Transit Data, Urban Mobility Modeling, Net-Zero Indicators.
 
 ---
 
