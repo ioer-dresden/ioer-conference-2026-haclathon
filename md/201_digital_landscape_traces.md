@@ -5,14 +5,14 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.19.3
+      jupytext_version: 1.19.5
   kernelspec:
     display_name: worker_env
     language: python
     name: worker_env
 ---
 
-```python editable=true tags=["remove-cell"] slideshow={"slide_type": ""}
+```python slideshow={"slide_type": ""} tags=["remove-cell"] editable=true
 import sys, os
 from pathlib import Path
 
@@ -32,7 +32,6 @@ pyexec = sys.executable
 
 * **Authors**: Alexander Dunkel (IOER) & Dominik Weckmüller (TU Dresden)
 * **Topics**: Transformative Governance, Urban & Regional Planning, Open Data Re-use
-*  **Badges**: ![Interactive](https://img.shields.io/badge/Type-Interactive_Code-blue?style=flat-square) ![Colab](https://img.shields.io/badge/Colab-Tested-yellow?style=flat-square&logo=googlecolab&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter4NFDI-Ready-orange?style=flat-square&logo=jupyter)
 
 ```{admonition} Summary
 :class: hint
@@ -79,7 +78,7 @@ All point coordinates are snapped to a Geohash-7 grid (~153m x 153m), direct use
 For easier development in Jupyter, we activate the autoreload of changed Python files. We also set up our local `modules` path and output directory.
 <!-- #endregion -->
 
-```python slideshow={"slide_type": ""} editable=true
+```python editable=true slideshow={"slide_type": ""}
 import pandas as pd
 import geopandas as gp
 import matplotlib.pyplot as plt
@@ -111,7 +110,7 @@ We use DuckDB to query the Parquet files directly. This avoids loading all 66 mi
 - Computes the national ratio of locals, tourists, and unclassified users.
 <!-- #endregion -->
 
-```python slideshow={"slide_type": ""} editable=true
+```python editable=true slideshow={"slide_type": ""}
 %%time
 parquet_dir = OUTPUT / "de_classified_points.parquet"
 zip_url = "https://datashare.tu-dresden.de/s/XeBH775Pa8L5CiG/download"
@@ -159,7 +158,7 @@ Pretty fast! Thanks to the [Parquet](https://parquet.apache.org/) format.
 The code automatically projects these coordinates to Web Mercator (`EPSG:3857`) to match the dataset projection.
 <!-- #endregion -->
 
-```python tags=["hide-input"] slideshow={"slide_type": ""} editable=true
+```python slideshow={"slide_type": ""} tags=["hide-input"] editable=true
 from datashader.utils import lnglat_to_meters
 
 MY_REGION_NAME = "Dresden & Surroundings"
@@ -228,7 +227,7 @@ Load the custom visualization module (which includes the complex Datashader code
 ### 2.1 Regional Examples
 <!-- #endregion -->
 
-<!-- #region editable=true slideshow={"slide_type": ""} -->
+<!-- #region slideshow={"slide_type": ""} editable=true -->
 Let's render two major tourist and recreational regions. We pull only the necessary data subset from the Parquet file to keep memory usage low, passing it to our custom `digitaltraces` module.
 * `bounds`: The spatial extent of the region.
 * `border`: The geographic boundaries for context.
@@ -251,7 +250,7 @@ fig = digitaltraces.render_datashader_map(df=df_subset, bounds=bounds, border=nu
 plt.show()
 ```
 
-```python slideshow={"slide_type": ""} editable=true
+```python editable=true slideshow={"slide_type": ""}
 name = "Baltic Coast (Rügen/Usedom)"
 bounds = regions_to_plot[name]
 
@@ -293,7 +292,7 @@ At this zoom level, the data transforms into an illegible matrix. We can no long
 This is a common trade-off in geospatial data science. Strict privacy measures limit the usefulness of raw visualizations at local scales. To extract meaningful insights for regional planning, we cannot rely on point-density alone. We must transition to advanced spatial statistics.
 <!-- #endregion -->
 
-<!-- #region editable=true slideshow={"slide_type": ""} -->
+<!-- #region slideshow={"slide_type": ""} editable=true -->
 ## 3. Beyond Replication
 
 Once a dataset is published openly, it often sparks interest outside the academic sphere. Recently, a journalist from a national news network approached us. She was writing a story about over-tourism and wanted to report on the most popular tourist destinations in her federal state, contrasting them with the "hidden gems" preferred by the local population. 
@@ -320,7 +319,7 @@ The core metric classifies social media users based on their global activity his
 In the code block below, we aggregate our point data into a spatial grid and utilize the `libpysal` library to calculate the spatial weights and the local G* statistic.
 <!-- #endregion -->
 
-```python editable=true slideshow={"slide_type": ""}
+```python slideshow={"slide_type": ""} editable=true
 # PLACEHOLDER: 
 # 1. DuckDB query to filter Sächsische Schweiz & Leipzig.
 # 2. Aggregate points into a grid (e.g., using Datashader or Geopandas hex bins).
@@ -378,6 +377,6 @@ How was this built?
 ```
 <!-- #endregion -->
 
-```python editable=true slideshow={"slide_type": ""}
+```python slideshow={"slide_type": ""} editable=true
 
 ```
