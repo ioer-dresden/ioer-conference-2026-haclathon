@@ -12,7 +12,7 @@
 #     name: python3
 # ---
 
-# %% deletable=true tags=["hide-cell"] slideshow={"slide_type": ""} editable=true
+# %% deletable=true tags=["remove-cell"] slideshow={"slide_type": ""} editable=true
 import sys, os
 from pathlib import Path
 
@@ -26,7 +26,7 @@ if 'google.colab' in sys.modules:
 pyexec = sys.executable
 # !../py/modules/pkginstall.sh "{pyexec}" geopandas matplotlib requests
 
-# %% slideshow={"slide_type": ""} tags=["hide-cell"] editable=true deletable=true
+# %% slideshow={"slide_type": ""} tags=["remove-cell"] editable=true deletable=true
 #import cell
 import geopandas as gpd
 import matplotlib.pyplot as plt
