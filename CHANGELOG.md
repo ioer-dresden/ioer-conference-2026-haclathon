@@ -7,6 +7,39 @@
 
 
  
+## v0.21.1 (2026-09-09)
+ 
+### Bug fixes
+ 
+
+
+- Left merge conflict ([`c59459e`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/c59459e96ee6d29d46f5ff955965010481063445))
+
+
+
+ 
+ 
+### Documentation
+ 
+
+
+- Fix markdown code block ([`c043ad3`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/c043ad3f5d80a2593e412774e2e0db0a651a7e93))
+
+
+
+ 
+ 
+### Refactoring
+ 
+
+
+- Fix remove-cells for setup; headings & title (206) ([`59debc2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/59debc2dfdfc3dcb1246151756c53cd434905ddf))
+
+
+
+ 
+ 
+ 
 ## v0.21.0 (2026-09-09)
  
 ### Documentation
