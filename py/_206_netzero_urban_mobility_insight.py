@@ -50,11 +50,9 @@ OUT = Path("../outputs") if Path.cwd().name == "scripts" else Path("outputs")
 (OUT / "figures").mkdir(parents=True, exist_ok=True)
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true
-# ```markdown
 # :::{warning}
 # This chapter is a work in progress.
 # :::
-# ```
 
 # %% [markdown] editable=true slideshow={"slide_type": ""}
 # # Lets explore some spatial insight on sustainable urban development and mobility infrastructure across geographical scales
