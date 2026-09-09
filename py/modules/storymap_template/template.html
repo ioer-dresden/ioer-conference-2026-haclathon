@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Storytelling with Map</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+
+    <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!--
+      scrolly.js reads _config.json and fills these five elements. It looks each
+      one up by id, so the ids must stay as they are; everything inside them is
+      written from the config.
+
+        #cover           title and subtitle
+        #hint_scrollDown must stay inside #cover: the cover text is inserted
+                         before it, so it ends up underneath
+        #map             the MapLibre canvas
+        #scrollyStory    one <section> per step: the optional "intro" panels
+                         first, then the chapters
+        #footer          the config's footer html
+
+      Add a logo or any other fixed branding inside #cover.
+    -->
+
+    <div id="cover" class="light">
+      <!-- filled from the config's cover.image; hidden when there is none -->
+      <img id="cover_image" alt="" />
+      <img src="./assets/FDZ-Logo_en.png" alt="IOER FDZ Logo" id="logo" />
+      <div class="byline" id="hint_scrollDown">
+        <i class="bi-arrow-down-circle bi"></i>
+        <p>Scroll to explore the story</p>
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <div id="scrollyStory"></div>
+    <div id="footer"></div>
+
+    <script src="./scrolly.js"></script>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.light {
+  color: #525252;
+  background-color: #efefef;
+}
+
+a,
+a:hover,
+a:visited {
+  color: #0071bc;
+  text-decoration: none;
+}
+
+#cover {
+  margin: auto;
+  width: 100%;
+  height: 95vh;
+  box-sizing: border-box;
+  padding-right: 25vw;
+  padding-top: 10vh;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2em;
+}
+
+#cover.light {
+  background: linear-gradient(
+    -180deg,
+    #f1f5f6 40%,
+    #f1f5f6c8 60%,
+    #f1f5f670 75%,
+    #f1f5f600 88%
+  );
+  background-blend-mode: screen;
+}
+
+#cover.dark {
+  background: linear-gradient(-180deg, #525252 30%, #525252d4 80%, #52525200);
+  background-blend-mode: screen;
+}
+
+#cover h1,
+#cover h2,
+#cover p,
+#cover img {
+  margin: 0;
+  /* padding: 2vh 2vw; */
+  text-align: right;
+}
+
+#logo {
+  max-width: 15%;
+  min-width: 150px;
+  padding: 1em;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sx {
+  width: 2px;
+  height: 12em;
+  background: #5252525f;
+  margin: 0 1em;
+}
+
+.sx.light {
+  background: #5252525f;
+}
+
+.sx.dark {
+  background: #ffffff5f;
+}
+
+#slogen {
+  height: 12em;
+  max-width: 50vw;
+  object-fit: contain;
+}
+
+.byline {
+  padding-top: 2em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.byline i {
+  -webkit-text-stroke: 1px;
+}
+
+#footer {
+  width: 100%;
+  min-height: 5vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  line-height: 25px;
+  font-size: 1em;
+  position: relative;
+  z-index: 5;
+  background-color: #efefef;
+}
+
+.chapter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #3b3b3b;
+  background-color: #f1f5f6;
+  border-radius: 10px;
+  z-index: 100;
+  padding: 25px 50px;
+  line-height: 1.5rem;
+
+  /* min-height: 50vh; */
+}
+
+.chapter-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+.section {
+  min-height: 50vh;
+  position: relative;
+  padding-top: 20vh;
+  padding-bottom: 95vh;
+  opacity: 0.25;
+  z-index: 100;
+}
+
+.section.active {
+  opacity: 1;
+}
+
+/* a hook: one full screen of text over the map, between the cover and the first
+   chapter. no card, so the map stays the picture. specificity keeps the mobile
+   .section padding below from overriding it. */
+.section.hook {
+  min-height: 100vh;
+  padding-top: 0;
+  padding-bottom: 20vh;
+  display: flex;
+  align-items: center;
+}
+
+.section.hook .chapter {
+  width: 100%;
+  background: none;
+  padding: 0;
+  font-size: 1.6em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.section img {
+  width: 100%;
+}
+
+.centered {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.lefty {
+  width: 33vw;
+  margin-left: 5vw;
+}
+
+.righty {
+  width: 33vw;
+  margin-left: 60vw;
+}
+
+.fully {
+  width: 80%;
+  margin: auto;
+}
+
+@media (max-width: 750px) {
+  .centered,
+  .lefty,
+  .righty,
+  .fully {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}
+
+#map {
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 0;
+}
+
+
+@media screen and (max-width: 750px) {
+
+  .section {
+    padding-top: 30vh;
+    padding-bottom: 100vh;
+  }
+}
+
+/* Cover picture: down the left, while the title and subtitle stay right.
+   Absolute, so it does not take part in the cover's flex column. */
+#cover_image {
+  position: absolute;
+  left: 2vw;
+  bottom: 0;
+  max-width: 42%;
+  max-height: 85%;
+  object-fit: contain;
+  object-position: left bottom;
+  z-index: 1;
+}
+#cover_image:not([src]) { display: none; }
+
+/* the words and the logo stay above it */
+#cover h1,
+#cover h2,
+#cover .byline,
+#logo { position: relative; z-index: 3; }
+
+/* A hook with a picture: illustration on the left, words on the right.
+   scrolly.js appends the text before the image, so the row is reversed
+   rather than reordered by hand. */
+.section.hook .chapter {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 3vw;
+  text-align: right;
+}
+/* the words sit on the same card the chapters use */
+.section.hook .chapter > div {
+  flex: 1 1 0;
+  color: #3b3b3b;
+  background-color: #f1f5f6;
+  border-radius: 10px;
+  padding: 25px 50px;
+}
+
+
+.section.hook .chapter-image {
+  flex: 0 0 auto;
+  align-self: center;
+  width: auto;
+  height: auto;
+  max-width: 42vw;
+  max-height: 80.75vh;
+  object-fit: contain;
+}

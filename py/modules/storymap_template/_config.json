@@ -1,0 +1,63 @@
+{
+  "mapstyle": "positron",
+  "location": {
+    "center": [10.45, 51.15],
+    "zoom": 4.5,
+    "bearing": 0,
+    "pitch": 0
+  },
+  "cover": {
+    "title": "Story title",
+    "subtitle": "<i>A subtitle, or a line that sets the scene</i>"
+  },
+  "intro": [
+    {
+      "description": "A line that pulls the reader in, while the map starts to move.",
+      "alignment": "fully",
+      "class": "hook",
+      "location": {
+        "center": [10.45, 51.15],
+        "zoom": 5,
+        "bearing": 0,
+        "pitch": 30
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "title": "First chapter",
+      "description": "Text for this step. The map flies to this chapter's location when the reader scrolls into it.",
+      "alignment": "lefty",
+      "location": {
+        "center": [10.45, 51.15],
+        "zoom": 5.5,
+        "bearing": 0,
+        "pitch": 0
+      }
+    },
+    {
+      "title": "Second chapter",
+      "description": "Another step, another camera position. <code>alignment</code> is one of lefty, righty, centered, fully.",
+      "alignment": "righty",
+      "location": {
+        "center": [13.75, 51.03],
+        "zoom": 10,
+        "bearing": 0,
+        "pitch": 0
+      }
+    },
+    {
+      "title": "Third chapter",
+      "description": "<code>bearing</code> rotates the map and <code>pitch</code> tilts it. <code>duration</code> sets how long the flight takes, in milliseconds.",
+      "alignment": "centered",
+      "location": {
+        "center": [13.748, 51.0312],
+        "zoom": 15.5,
+        "bearing": -20,
+        "pitch": 45,
+        "duration": 3000
+      }
+    }
+  ],
+  "footer": "Data source and licence go here"
+}
