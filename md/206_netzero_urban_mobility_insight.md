@@ -53,11 +53,9 @@ OUT = Path("../outputs") if Path.cwd().name == "scripts" else Path("outputs")
 ```
 
 <!-- #region slideshow={"slide_type": ""} editable=true -->
-```markdown
 :::{warning}
 This chapter is a work in progress.
 :::
-```
 <!-- #endregion -->
 
 <!-- #region editable=true slideshow={"slide_type": ""} -->
