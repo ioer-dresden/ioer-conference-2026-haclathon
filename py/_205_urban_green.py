@@ -5,14 +5,15 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.19.3
+#       jupytext_version: 1.19.5
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
 
-# %% deletable=true slideshow={"slide_type": ""} editable=true
+# %% deletable=true tags=["remove-input"] slideshow={"slide_type": ""} editable=true
+# Run this cell to work in colab
 import sys, os
 from pathlib import Path
 
@@ -26,17 +27,10 @@ if 'google.colab' in sys.modules:
 pyexec = sys.executable
 # !../py/modules/pkginstall.sh "{pyexec}" geopandas matplotlib requests
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
-#import cell
-import geopandas as gpd
-import matplotlib.pyplot as plt
-import matplotlib.patheffects as pe
-import requests
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
-# # 🌿 Urban Green for Climate Regulation
+# %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
+# # 🌿 Urban Green Cooling Benifits with ioerDATA: From API to Insight
 #
-# * **Authors**: Marzan Tasnim Oyshi (IOER) 
+# * **Authors**: Marzan Tasnim Oyshi (IOER) & Maria Nieswand (IOER)
 # * **Topics**: Urban Green Infrastructure, Climate Regulation, Ecosystem Services, Open Data Re-use, Reproducible Research
 # *  **Badges**: ![ioerDATA](https://img.shields.io/badge/Data-ioerDATA-green?style=flat-square) ![Dataverse API](https://img.shields.io/badge/Access-Dataverse_API-blueviolet?style=flat-square) ![FAIR Data](https://img.shields.io/badge/Principle-FAIR_Data-brightgreen?style=flat-square) ![Colab](https://img.shields.io/badge/Colab-Tested-yellow?style=flat-square&logo=googlecolab&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter4NFDI-Ready-orange?style=flat-square&logo=jupyter)
 # ```{admonition} Summary
@@ -86,7 +80,7 @@ import requests
 #
 # This notebook explores that question using an openly available research dataset.
 
-# %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
+# %% [markdown] deletable=true editable=true slideshow={"slide_type": ""}
 # ## 2. From publication to reusable research data
 #
 # The analysis is based on the ioerDATA replication package:
@@ -110,8 +104,8 @@ import requests
 #
 # Instead, we can directly inspect and reuse the underlying research data.
 
-# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
-# ## ♻️ Reproducibility first
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
+# ## Reproducibility first
 #
 # A scientific figure is much more useful when we can understand:
 #
@@ -124,7 +118,7 @@ import requests
 #
 # The same data can then be reused for questions that were not necessarily part of the original publication.
 
-# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
 # ## 3. Access the replication package
 #
 # The dataset is published through **ioerDATA**, which is based on Dataverse.
@@ -133,58 +127,195 @@ import requests
 #
 # This is useful because the source of the data becomes part of the analysis itself.
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true
+# ### Setup
+#
+# Import the libraries needed for this chapter
+
+# %% tags=["hide-input"] slideshow={"slide_type": "slide"} editable=true
+#import cell
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
+import requests
+
+from pathlib import Path
+from getpass import getpass
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+import matplotlib.patheffects as pe
+
+from tqdm.auto import tqdm
+
+print("Installed libraries ✓")
+
+# %% [markdown] editable=true slideshow={"slide_type": ""}
+# ### Check the dataset contents
+#
+# Before downloading the data, we first query the ioerDATA API to see which files are included in the replication package.
+#
+# The request may take a few moments. A loading indicator will appear while the metadata is being retrieved.
+
+# %% editable=true tags=["hide-input"] slideshow={"slide_type": "slide"}
+# DOI of the ioerDATA replication package
 dataset_doi = "doi:10.71830/AFW3N3"
 
+# Build the Dataverse API URL for the dataset
 api_url = (
     "https://data.fdz.ioer.de/api/datasets/:persistentId/"
     f"?persistentId={dataset_doi}"
 )
 
-metadata = requests.get(api_url).json()
+# Show a loading message while requesting the metadata
+print("⏳ Retrieving dataset information from ioerDATA...")
+
+# Request metadata from the ioerDATA Dataverse API
+response = requests.get(api_url, timeout=60)
+response.raise_for_status()
+
+# Convert the API response to JSON
+metadata = response.json()
+
+# Extract the files from the latest dataset version
 files = metadata["data"]["latestVersion"]["files"]
 
-for item in files:
-    print(item["dataFile"]["filename"])
+# Confirm that the request has finished
+print(f"✓ Done! Found {len(files)} files:\n")
 
-# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# Display the available filenames
+for item in files:
+    print(f"  • {item['dataFile']['filename']}")
+
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
 # ## 3. Download the replication package
 #
 # The replication package is published on **ioerDATA** and can be accessed through the Dataverse API.
 #
-# Some files are public, while others are **restricted** and require authentication. A personal API token allows the notebook to authenticate with ioerDATA and download all files your account is permitted to access.
+# While many files are publicly available, some are **restricted** and require authentication. By creating a free **ioerDATA account**, you can generate a **personal API token** that allows this notebook to securely access all files your account is authorized to use.
+#
+# **Already have an ioerDATA account?** Simply log in.  
+# **New to ioerDATA?** Sign up for an account and follow the steps below to create your personal API token.
+#
+# ![ioerDATA login](../resources/dataverse.png "ioerDATA login")
+# ![ioerDATA API](../resources/dataverse_api.png "ioerDATA API")
 #
 # > ⚠️ **Keep your API token private.** Never save it in the notebook or commit it to GitHub.
 
-# %% slideshow={"slide_type": ""} editable=true deletable=true
-from pathlib import Path
-from getpass import getpass
-import requests
-
+# %% slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
+# ioerDATA Dataverse address and dataset DOI
 base_url = "https://data.fdz.ioer.de"
 persistent_id = "doi:10.71830/AFW3N3"
 
-# Authenticate securely
-api_token = getpass("Paste your ioerDATA API token: ")
+# Ask for the personal API token securely.
+# The entered token will not be displayed in the notebook.
+api_token = getpass("🔑 Paste your ioerDATA API token: ")
 headers = {"X-Dataverse-key": api_token}
 
-# Get dataset metadata and file list
+print("\n⏳ Authenticating and retrieving dataset information...")
+
+# Request metadata for the latest version of the dataset
 url = f"{base_url}/api/datasets/:persistentId/"
-metadata = requests.get(
+
+response = requests.get(
     url,
     params={"persistentId": persistent_id},
-    headers=headers
-).json()
+    headers=headers,
+    timeout=60
+)
 
+# Stop with a clear error if the request was unsuccessful
+response.raise_for_status()
+
+# Extract the list of files from the API response
+metadata = response.json()
 files = metadata["data"]["latestVersion"]["files"]
 
-# Prepare download folder
+# Create a folder for the downloaded files
 data_dir = Path("data/raw")
 data_dir.mkdir(parents=True, exist_ok=True)
 
-print(f"{len(files)} files found.")
+# Confirm that everything is ready for the download
+print(f"✓ Ready! {len(files)} files found.")
+print(f"📁 Files will be stored in: {data_dir.resolve()}")
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true
+# ### Download the dataset files
+#
+# The files are now downloaded to a local `data/raw` folder.
+#
+# A progress bar shows the download status for each file. Restricted files are downloaded only if your ioerDATA account has permission.
+#
+# If you are running this notebook in **Google Colab**, you can also package the downloaded files into a ZIP archive and download them to your computer.
+
+# %% editable=true tags=["hide-input"] slideshow={"slide_type": "slide"}
+# Show where files will be stored
+print(f"📁 Download folder:\n{data_dir.resolve()}\n")
+
+# Show the complete list before downloading anything
+print(f"📦 {len(files)} files found in the replication package:\n")
+
+for i, item in enumerate(files, start=1):
+    file = item["dataFile"]
+    filename = file["filename"]
+    access = "restricted" if item.get("restricted") else "public"
+
+    print(f"{i:>2}. {filename} ({access})")
+
+print("\n⬇ Starting downloads...\n")
+
+# Download files one by one
+for i, item in enumerate(files, start=1):
+    file = item["dataFile"]
+    filename = file["filename"]
+    output = data_dir / filename
+    access = "restricted" if item.get("restricted") else "public"
+
+    print(f"\n[{i}/{len(files)}] {filename} ({access})")
+
+    # Request the file as a stream so it can be downloaded in chunks
+    response = requests.get(
+        f"{base_url}/api/access/datafile/{file['id']}",
+        headers=headers,
+        stream=True,
+        timeout=120
+    )
+
+    # Skip restricted files if the account does not have permission
+    if response.status_code in (401, 403):
+        print("⏭ Skipped — no permission")
+        continue
+
+    # Stop if another download error occurs
+    response.raise_for_status()
+
+    # Get the expected file size, if provided by the server
+    total_size = int(response.headers.get("content-length", 0))
+
+    # Save the file while showing download progress
+    with open(output, "wb") as f:
+        with tqdm(
+            total=total_size,
+            unit="B",
+            unit_scale=True,
+            unit_divisor=1024,
+            desc="Downloading",
+            leave=True
+        ) as progress:
+
+            for chunk in response.iter_content(chunk_size=1024 * 1024):
+                if chunk:
+                    f.write(chunk)
+                    progress.update(len(chunk))
+
+    print(f"✓ Saved to: {output.resolve()}")
+
+# Final summary
+print("\n✅ Download process complete.")
+print(f"📁 Available files are stored in:\n{data_dir.resolve()}")
+
+# %% deletable=true editable=true slideshow={"slide_type": "slide"} tags=["hide-input"]
 for item in files:
     file = item["dataFile"]
     filename = file["filename"]
@@ -210,7 +341,7 @@ for item in files:
     access = "restricted" if item.get("restricted") else "public"
     print(f"Downloaded: {filename} ({access})")
 
-# %% [markdown]
+# %% [markdown] editable=true slideshow={"slide_type": ""}
 # ## FAIR Data in Practice
 #
 # This replication package illustrates how the **FAIR principles** can support reproducible research:
@@ -223,62 +354,74 @@ for item in files:
 # > **FAIR does not necessarily mean open.**  
 # > Restricted data can still be FAIR when access conditions are clearly described and authorised users can access the data through a transparent process.
 
-# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
 # ## 4. Load the spatial data
 #
 # The main spatial dataset is stored as a GeoPackage. We load it with GeoPandas and inspect the available indicators before mapping them.
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
-import geopandas as gpd
-import matplotlib.pyplot as plt
-
+# %% slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
+# Define the path to the downloaded GeoPackage
 gpkg_path = data_dir / "climate_regulation_in_cities.gpkg"
 
+# Load the spatial dataset as a GeoDataFrame
 gdf = gpd.read_file(gpkg_path)
 
+# Display basic information about the dataset
 print(f"Features: {len(gdf)}")
 print(f"CRS: {gdf.crs}")
 
+# Preview the first five rows
 gdf.head()
 
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
 # This is the checkpoint where you identify the exact columns for:
 #
 # >city name, cooling capacity, population benefit
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
+# %% editable=true deletable=true slideshow={"slide_type": "slide"} tags=["hide-input"]
+# List all attribute columns available in the spatial dataset
 gdf.columns.tolist()
 
-# %% [markdown] deletable=true editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
 # ## 5. Where is climate-regulation capacity high?
 #
 # Urban green infrastructure provides different levels of cooling capacity across German cities.
 #
 # Mapping the indicator helps reveal where climate-regulation potential is comparatively high or low.
 
-# %% deletable=true editable=true slideshow={"slide_type": ""}
-#prepare map context
-import matplotlib.patheffects as pe
+# %% slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
+# Prepare the data and geographic context for the map
 
+# Select the indicator to visualize and the column containing city names
 value_col = "Pop_Benefit_Percent"
 name_col = "GEN"
+
+# Reproject the city data to WGS84 for mapping
 gdf_wgs = gdf.to_crs("EPSG:4326")
 
+# Load country boundaries from Natural Earth
 world = gpd.read_file(
     "https://naturalearth.s3.amazonaws.com/110m_cultural/ne_110m_admin_0_countries.zip"
 )
+
+# Select Germany to provide geographic context
 germany = world[world["NAME"] == "Germany"]
 
+# Select major cities to label without overcrowding the map
 major_cities = {
     "Berlin", "Hamburg", "München", "Dresden",
     "Köln", "Leipzig", "Frankfurt am Main", "Bremen"
 }
-labels = gdf_wgs[gdf_wgs[name_col].isin(major_cities)]
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
-#map the indicator
+# Keep only the selected cities for map labels
+labels = gdf_wgs[gdf_wgs[name_col].isin(major_cities)]
+print ("Map Context Prepared!")
+
+# %% tags=["hide-input"] editable=true slideshow={"slide_type": "slide"}
+# Create the map and set the figure size
 fig, ax = plt.subplots(figsize=(9, 9))
 
+# Map the percentage of population benefiting from urban climate regulation
 gdf_wgs.plot(
     column=value_col,
     cmap="viridis",
@@ -288,16 +431,38 @@ gdf_wgs.plot(
     ax=ax
 )
 
-germany.boundary.plot(ax=ax, color="black", linewidth=0.8)
+# Add the German national boundary for geographic context
+germany.boundary.plot(
+    ax=ax,
+    color="black",
+    linewidth=0.8
+)
 
+# Add labels for selected major cities
 for _, row in labels.iterrows():
-    p = row.geometry.representative_point()
-    txt = ax.text(p.x, p.y, row[name_col], fontsize=7, ha="center")
-    txt.set_path_effects([pe.withStroke(linewidth=2, foreground="white")])
 
+    # Find a suitable point inside each city geometry for the label
+    p = row.geometry.representative_point()
+
+    # Add the city name
+    txt = ax.text(
+        p.x,
+        p.y,
+        row[name_col],
+        fontsize=7,
+        ha="center"
+    )
+
+    # Add a white outline to make labels easier to read
+    txt.set_path_effects([
+        pe.withStroke(linewidth=2, foreground="white")
+    ])
+
+# Add a descriptive title and remove map axes
 ax.set_title("Population Benefiting from Urban Climate Regulation")
 ax.set_axis_off()
 
+# Display the finished map
 plt.show()
 
 # %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
@@ -320,20 +485,31 @@ plt.show()
 # - How do cities compare with each other?
 # - What might these differences mean for urban green planning?
 
-# %% editable=true deletable=true slideshow={"slide_type": ""}
-#compare cities
+# %% slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
+# Select the 10 cities with the highest population benefit
+# and sort them for a clear horizontal bar chart
 top = gdf.nlargest(10, value_col).sort_values(value_col)
 
+# Create the figure
 fig, ax = plt.subplots(figsize=(8, 5))
 
-ax.barh(top[name_col], top[value_col])
+# Compare the population benefit across the selected cities
+ax.barh(
+    top[name_col],
+    top[value_col]
+)
+
+# Add a descriptive axis label and title
 ax.set_xlabel("Population benefiting (%)")
 ax.set_title("Cities with High Population Benefit from UGI")
 
+# Adjust spacing so labels are not cut off
 plt.tight_layout()
+
+# Display the finished chart
 plt.show()
 
-# %% [markdown] deletable=true editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
 # ## Try it yourself
 #
 # Open data makes it possible to move beyond reproduction.
@@ -346,7 +522,7 @@ plt.show()
 #
 # > **Replication reproduces evidence. Reuse creates opportunities for new questions.**
 
-# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} deletable=true editable=true
 # ## Conclusion
 #
 # This example moves from:
@@ -357,4 +533,11 @@ plt.show()
 #
 # The ioerDATA replication package makes this evidence accessible for reproduction, exploration, and further research.
 
-# %% slideshow={"slide_type": ""} editable=true deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# ## Acknowledgements
+#
+# This contribution builds on the broader [**ioerDATA training materials**](https://github.com/ioer-dresden/jupyter-book-ioerdata) developed at IOER.
+#
+# The author gratefully acknowledges **Cruickshank, Claudia** for feedback and refinement & **Dunkel, Alexander** for technical support and earlier training resources.
+
+# %% slideshow={"slide_type": ""} editable=true
