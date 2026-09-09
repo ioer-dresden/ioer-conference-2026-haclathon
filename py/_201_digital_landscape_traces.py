@@ -5,14 +5,14 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.19.3
+#       jupytext_version: 1.19.5
 #   kernelspec:
 #     display_name: worker_env
 #     language: python
 #     name: worker_env
 # ---
 
-# %% editable=true tags=["remove-cell"] slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} tags=["remove-cell"] editable=true
 import sys, os
 from pathlib import Path
 
@@ -74,7 +74,7 @@ pyexec = sys.executable
 #
 # For easier development in Jupyter, we activate the autoreload of changed Python files. We also set up our local `modules` path and output directory.
 
-# %% slideshow={"slide_type": ""} editable=true
+# %% editable=true slideshow={"slide_type": ""}
 import pandas as pd
 import geopandas as gp
 import matplotlib.pyplot as plt
@@ -104,7 +104,7 @@ OUTPUT.mkdir(exist_ok=True)
 # - Connects DuckDB to the Parquet directory.
 # - Computes the national ratio of locals, tourists, and unclassified users.
 
-# %% slideshow={"slide_type": ""} editable=true
+# %% editable=true slideshow={"slide_type": ""}
 # %%time
 parquet_dir = OUTPUT / "de_classified_points.parquet"
 zip_url = "https://datashare.tu-dresden.de/s/XeBH775Pa8L5CiG/download"
@@ -149,7 +149,7 @@ display(df_totals)
 #
 # The code automatically projects these coordinates to Web Mercator (`EPSG:3857`) to match the dataset projection.
 
-# %% tags=["hide-input"] slideshow={"slide_type": ""} editable=true
+# %% slideshow={"slide_type": ""} tags=["hide-input"] editable=true
 from datashader.utils import lnglat_to_meters
 
 MY_REGION_NAME = "Dresden & Surroundings"
@@ -214,7 +214,7 @@ regions_to_plot = {
 # %% [markdown] slideshow={"slide_type": ""} editable=true
 # ### 2.1 Regional Examples
 
-# %% [markdown] editable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true
 # Let's render two major tourist and recreational regions. We pull only the necessary data subset from the Parquet file to keep memory usage low, passing it to our custom `digitaltraces` module.
 # * `bounds`: The spatial extent of the region.
 # * `border`: The geographic boundaries for context.
@@ -235,7 +235,7 @@ df_subset = digitaltraces.query_region(con, parquet_dir, bounds)
 fig = digitaltraces.render_datashader_map(df=df_subset, bounds=bounds, border=nuts1_de, title=name)
 plt.show()
 
-# %% slideshow={"slide_type": ""} editable=true
+# %% editable=true slideshow={"slide_type": ""}
 name = "Baltic Coast (Rügen/Usedom)"
 bounds = regions_to_plot[name]
 
@@ -271,7 +271,7 @@ plt.show()
 #
 # This is a common trade-off in geospatial data science. Strict privacy measures limit the usefulness of raw visualizations at local scales. To extract meaningful insights for regional planning, we cannot rely on point-density alone. We must transition to advanced spatial statistics.
 
-# %% [markdown] editable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true
 # ## 3. Beyond Replication
 #
 # Once a dataset is published openly, it often sparks interest outside the academic sphere. Recently, a journalist from a national news network approached us. She was writing a story about over-tourism and wanted to report on the most popular tourist destinations in her federal state, contrasting them with the "hidden gems" preferred by the local population. 
@@ -296,7 +296,7 @@ plt.show()
 #
 # In the code block below, we aggregate our point data into a spatial grid and utilize the `libpysal` library to calculate the spatial weights and the local G* statistic.
 
-# %% editable=true slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} editable=true
 # PLACEHOLDER: 
 # 1. DuckDB query to filter Sächsische Schweiz & Leipzig.
 # 2. Aggregate points into a grid (e.g., using Datashader or Geopandas hex bins).
@@ -351,4 +351,4 @@ plt.show()
 # :filter: docname in docnames
 # ```
 
-# %% editable=true slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} editable=true
