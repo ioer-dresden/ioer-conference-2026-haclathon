@@ -14,14 +14,10 @@ from pathlib import Path
 from ipywidgets import Box, HTML, VBox
 
 # --- Globals ---
-# The template ships inside this package, so it is found through the module's
-# own location rather than the notebook's working directory. That keeps
-# save_story working the same from notebooks/, from the repository root, or
-# from a Colab clone, none of which agree on what "template" would mean.
 TEMPLATE_DIR = Path(__file__).parent / "storymap_template"
 
 # Chapter card width and left offset, as a % of the viewport. Mimic styles.css in template,
-# so a preview here frames the same way the published page does.
+# so a preview here frames the relatvi the published page does.
 ALIGNMENTS = {
     "lefty": (33, 5),
     "righty": (33, 60),
@@ -448,3 +444,6 @@ def save_story(config, site="storymap", assets="assets", template=None):
     validate_config(config, base=site)
     (site / "_config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
     return site
+
+
+

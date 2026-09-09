@@ -47,7 +47,6 @@ Helper functions in storybuilder.py can be used to:
 - `save_story`: validate the chapter writing and save the configuration. It copies the template and the styles into the site folder, brings along everything sitting in your `assets` folder, then runs the same checks over the finished config. If anything is wrong it reports every problem at once, and leaves your previous build untouched.
 
 
-
 ### The Inspiration and Storyline Sketch
 
 
@@ -62,6 +61,7 @@ So I wanted to make a story map about them. And I have the data from the starter
 
 ![Sketch of the story line](../resources/storysketch.png "Sketch of the story line")
 
+## Storybuilding
 
 ### Setup
 
@@ -87,9 +87,7 @@ from ipyleaflet import GeoJSON, Map, TileLayer, basemaps, projections
 from owslib.wcs import WebCoverageService
 from pyproj import Transformer
 
-# storybuilder.py lives in py/modules, next to tools.py, and does the story map
-# side: writing chapters, previewing them on a map, and saving the site. It is
-# imported the same way the other chapters import modules/tools.py.
+# storybuilder.py lives in py/modules, next to tools.py
 module_path = str(Path.cwd().parents[0] / "py")
 if module_path not in sys.path:
     sys.path.append(module_path)
@@ -817,7 +815,7 @@ Together they make a good data base.
 And here are the results as geojson: a habitat suitability index for 1,371 individual
 trees in a neighbourhood in Munich. 
 
-The processing steps will later be shared.
+The data are processed in QGIS 3.44 and the output is manually added to assets folder. 
 
 ```python
 HSI_FILE = Path("assets/hsi_trees.geojson")
@@ -882,7 +880,7 @@ chapter_preview(chapter_trees, m_trees)
 
 ### The cover
 
-The last thing we make is the first thing on screen, before any map: the cover and the hook. I found an engraving of herons by John G. Warnicke after Alexander Wilson, the father of American ornithology, in the collection of the National Gallery of Art. I derived the silhouettes from it and used them on the cover.
+The last thing we make is the first thing on screen, before any map: the cover and the hook. I found an engraving of herons by John G. Warnicke after Alexander Wilson, the father of American ornithology, in the collection of the National Gallery of Art. I derived the silhouettes from it and used them on the cover. Add the illustrations to assets folder and integrate them inside the storymap as:
 
 ```python
 cover = {
