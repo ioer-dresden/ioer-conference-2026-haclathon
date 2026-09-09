@@ -7,6 +7,60 @@
 
 
  
+## v0.21.0 (2026-09-09)
+ 
+### Documentation
+ 
+
+
+- Register chapter 206 in toc and contributors list ([`cbf2a55`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/cbf2a5504c72761a5675edc6aba139a93dd7df71))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- **community**: Update chapter 205 (urban green) by tasnim oyshi ([`ff09553`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ff095532f9ad7ff032d0ef061f690546f020283a))
+
+
+
+ 
+
+
+- Refine urban green api workflow ([`fde1e86`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/fde1e862657de4ddfa0caa74b9b13400e4aae77b))
+
+
+
+ 
+ 
+### Refactoring
+ 
+
+
+- Use remove-cell instead of hide-cell, to hide content altogether ([`ae45585`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ae45585763e34f931eb43ba61cccf8bcc08d4db7))
+
+
+
+ 
+
+
+- Hide setup cells ([`0e83cd9`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/0e83cd98a7a135d47b6593da396cce731ddf345d))
+
+
+
+ 
+
+
+- Hide setup cells; fix title; add md/py syncs ([`ded7b3c`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ded7b3c621a52553fc79109d1c20859f0651daaf))
+
+
+
+ 
+ 
+ 
 ## v0.20.0 (2026-09-09)
  
 ### Features
