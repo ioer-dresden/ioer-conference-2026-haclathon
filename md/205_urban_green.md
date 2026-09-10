@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-```python deletable=true tags=["remove-cell"] editable=true slideshow={"slide_type": ""}
+```python tags=["remove-input"] deletable=true slideshow={"slide_type": ""} editable=true
 # Run this cell to work in colab
 import sys, os
 from pathlib import Path
@@ -52,10 +52,6 @@ We will:
 The aim is to demonstrate how published research data can be **reused, explored, and extended**.
 ```
 
-```{warning}
-This chapter is a work in progress.
-```
-
 ---
 
 ## 1. Why does urban green matter?
@@ -82,7 +78,7 @@ For climate adaptation, we are also interested in:
 This notebook explores that question using an openly available research dataset.
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+<!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
 ## 2. From publication to reusable research data
 
 The analysis is based on the ioerDATA replication package:
@@ -107,7 +103,7 @@ This gives us an opportunity to move beyond simply reading a scientific publicat
 Instead, we can directly inspect and reuse the underlying research data.
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+<!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
 ## Reproducibility first
 
 A scientific figure is much more useful when we can understand:
@@ -138,7 +134,7 @@ This is useful because the source of the data becomes part of the analysis itsel
 Import the libraries needed for this chapter
 <!-- #endregion -->
 
-```python editable=true slideshow={"slide_type": "slide"} tags=["hide-input"]
+```python slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
 #import cell
 import geopandas as gpd
 import matplotlib.pyplot as plt
@@ -166,7 +162,7 @@ Before downloading the data, we first query the ioerDATA API to see which files 
 The request may take a few moments. A loading indicator will appear while the metadata is being retrieved.
 <!-- #endregion -->
 
-```python slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
+```python tags=["hide-input"] editable=true slideshow={"slide_type": "slide"}
 # DOI of the ioerDATA replication package
 dataset_doi = "doi:10.71830/AFW3N3"
 
@@ -261,7 +257,7 @@ A progress bar shows the download status for each file. Restricted files are dow
 If you are running this notebook in **Google Colab**, you can also package the downloaded files into a ZIP archive and download them to your computer.
 <!-- #endregion -->
 
-```python tags=["hide-input"] slideshow={"slide_type": "slide"} editable=true
+```python slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
 # Show where files will be stored
 print(f"📁 Download folder:\n{data_dir.resolve()}\n")
 
@@ -328,7 +324,7 @@ print("\n✅ Download process complete.")
 print(f"📁 Available files are stored in:\n{data_dir.resolve()}")
 ```
 
-```python slideshow={"slide_type": "slide"} tags=["hide-input"] deletable=true editable=true
+```python editable=true deletable=true tags=["hide-input"] slideshow={"slide_type": "slide"}
 for item in files:
     file = item["dataFile"]
     filename = file["filename"]
@@ -355,7 +351,7 @@ for item in files:
     print(f"Downloaded: {filename} ({access})")
 ```
 
-<!-- #region editable=true slideshow={"slide_type": ""} -->
+<!-- #region slideshow={"slide_type": ""} editable=true -->
 ## FAIR Data in Practice
 
 This replication package illustrates how the **FAIR principles** can support reproducible research:
@@ -369,13 +365,13 @@ This replication package illustrates how the **FAIR principles** can support rep
 > Restricted data can still be FAIR when access conditions are clearly described and authorised users can access the data through a transparent process.
 <!-- #endregion -->
 
-<!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
+<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
 ## 4. Load the spatial data
 
 The main spatial dataset is stored as a GeoPackage. We load it with GeoPandas and inspect the available indicators before mapping them.
 <!-- #endregion -->
 
-```python editable=true tags=["hide-input"] slideshow={"slide_type": "slide"}
+```python tags=["hide-input"] slideshow={"slide_type": "slide"} editable=true
 # Define the path to the downloaded GeoPackage
 gpkg_path = data_dir / "climate_regulation_in_cities.gpkg"
 
@@ -390,13 +386,13 @@ print(f"CRS: {gdf.crs}")
 gdf.head()
 ```
 
-<!-- #region editable=true slideshow={"slide_type": ""} deletable=true -->
+<!-- #region slideshow={"slide_type": ""} deletable=true editable=true -->
 This is the checkpoint where you identify the exact columns for:
 
 >city name, cooling capacity, population benefit
 <!-- #endregion -->
 
-```python editable=true deletable=true tags=["hide-input"] slideshow={"slide_type": "slide"}
+```python tags=["hide-input"] slideshow={"slide_type": "slide"} deletable=true editable=true
 # List all attribute columns available in the spatial dataset
 gdf.columns.tolist()
 ```
@@ -409,7 +405,7 @@ Urban green infrastructure provides different levels of cooling capacity across 
 Mapping the indicator helps reveal where climate-regulation potential is comparatively high or low.
 <!-- #endregion -->
 
-```python slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
+```python tags=["hide-input"] slideshow={"slide_type": "slide"} editable=true
 # Prepare the data and geographic context for the map
 
 # Select the indicator to visualize and the column containing city names
@@ -438,7 +434,7 @@ labels = gdf_wgs[gdf_wgs[name_col].isin(major_cities)]
 print ("Map Context Prepared!")
 ```
 
-```python editable=true slideshow={"slide_type": "slide"} tags=["hide-input"]
+```python slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
 # Create the map and set the figure size
 fig, ax = plt.subplots(figsize=(9, 9))
 
@@ -487,7 +483,7 @@ ax.set_axis_off()
 plt.show()
 ```
 
-<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+<!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
 ### What does the map show?
 
 The indicator represents the **share of inhabitants benefiting from the cooling effect of urban green infrastructure**.
@@ -497,7 +493,7 @@ The map reveals that this benefit varies between German cities. This shifts the 
 > **How effectively does urban green infrastructure provide climate-regulation benefits to people?**
 <!-- #endregion -->
 
-<!-- #region editable=true deletable=true slideshow={"slide_type": ""} -->
+<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
 ## 6. From replication to exploration
 
 Reproducing the indicator map is only the starting point.
@@ -509,7 +505,7 @@ Because the replication package provides reusable spatial data, we can explore a
 - What might these differences mean for urban green planning?
 <!-- #endregion -->
 
-```python editable=true slideshow={"slide_type": "slide"} tags=["hide-input"]
+```python slideshow={"slide_type": "slide"} editable=true tags=["hide-input"]
 # Select the 10 cities with the highest population benefit
 # and sort them for a clear horizontal bar chart
 top = gdf.nlargest(10, value_col).sort_values(value_col)
@@ -548,7 +544,7 @@ Try changing the analysis:
 > **Replication reproduces evidence. Reuse creates opportunities for new questions.**
 <!-- #endregion -->
 
-<!-- #region editable=true slideshow={"slide_type": ""} deletable=true -->
+<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
 ## Conclusion
 
 This example moves from:
