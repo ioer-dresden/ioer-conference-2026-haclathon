@@ -7,6 +7,36 @@
 
 
  
+## v0.22.0 (2026-09-10)
+ 
+### Bug fixes
+ 
+
+
+- Urban green image fix ([`b93d205`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/b93d20506dcd88602059a3bd7b015cb61ca5c2e7))
+
+
+
+ 
+
+
+- Fixed relative path in helper function ([`0a1efca`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/0a1efcac67f5b2778c49e2a9d4859151ff856bcb))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- Share template of storymap and helper scripts ([`fd918a0`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/fd918a07a50d62a60e8780bca50ec7a741de2842))
+
+
+
+ 
+ 
+ 
 ## v0.21.1 (2026-09-09)
  
 ### Bug fixes
