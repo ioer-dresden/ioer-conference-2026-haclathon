@@ -79,6 +79,7 @@ This notebook explores that question using an openly available research dataset.
 <!-- #endregion -->
 
 <!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
+---
 ## 2. From publication to reusable research data
 
 The analysis is based on the ioerDATA replication package:
@@ -104,6 +105,7 @@ Instead, we can directly inspect and reuse the underlying research data.
 <!-- #endregion -->
 
 <!-- #region deletable=true slideshow={"slide_type": ""} editable=true -->
+---
 ## Reproducibility first
 
 A scientific figure is much more useful when we can understand:
@@ -118,7 +120,8 @@ This notebook therefore keeps the complete workflow visible and executable.
 The same data can then be reused for questions that were not necessarily part of the original publication.
 <!-- #endregion -->
 
-<!-- #region editable=true slideshow={"slide_type": ""} deletable=true -->
+<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## 3. Access the replication package
 
 The dataset is published through **ioerDATA**, which is based on Dataverse.
@@ -128,7 +131,7 @@ Instead of manually downloading the GeoPackage, we can retrieve it programmatica
 This is useful because the source of the data becomes part of the analysis itself.
 <!-- #endregion -->
 
-<!-- #region editable=true slideshow={"slide_type": ""} -->
+<!-- #region slideshow={"slide_type": ""} editable=true -->
 ### Setup
 
 Import the libraries needed for this chapter
@@ -194,13 +197,14 @@ for item in files:
 ```
 
 <!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## 3. Download the replication package
 
 The replication package is published on **ioerDATA** and can be accessed through the Dataverse API.
 
 While many files are publicly available, some are **restricted** and require authentication. By creating a free **ioerDATA account**, you can generate a **personal API token** that allows this notebook to securely access all files your account is authorized to use.
 
-**Already have an ioerDATA account?** Simply log in.  
+**Already have an ioerDATA account?** Simply log in.
 **New to ioerDATA?** Sign up for an account and follow the steps below to create your personal API token.
 
 ![ioerDATA login](../resources/dataverse.png "ioerDATA login")
@@ -209,7 +213,7 @@ While many files are publicly available, some are **restricted** and require aut
 > ⚠️ **Keep your API token private.** Never save it in the notebook or commit it to GitHub.
 <!-- #endregion -->
 
-```python tags=["hide-input"] editable=true slideshow={"slide_type": "slide"}
+```python slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
 # ioerDATA Dataverse address and dataset DOI
 base_url = "https://data.fdz.ioer.de"
 persistent_id = "doi:10.71830/AFW3N3"
@@ -352,6 +356,7 @@ for item in files:
 ```
 
 <!-- #region slideshow={"slide_type": ""} editable=true -->
+---
 ## FAIR Data in Practice
 
 This replication package illustrates how the **FAIR principles** can support reproducible research:
@@ -361,11 +366,12 @@ This replication package illustrates how the **FAIR principles** can support rep
 - **Interoperable** — spatial data is provided in standard formats such as GeoPackage.
 - **Reusable** — documentation, metadata and provenance allow the data to be understood and used beyond the original study.
 
-> **FAIR does not necessarily mean open.**  
+> **FAIR does not necessarily mean open.**
 > Restricted data can still be FAIR when access conditions are clearly described and authorised users can access the data through a transparent process.
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## 4. Load the spatial data
 
 The main spatial dataset is stored as a GeoPackage. We load it with GeoPandas and inspect the available indicators before mapping them.
@@ -397,7 +403,8 @@ This is the checkpoint where you identify the exact columns for:
 gdf.columns.tolist()
 ```
 
-<!-- #region editable=true slideshow={"slide_type": ""} deletable=true -->
+<!-- #region editable=true deletable=true slideshow={"slide_type": ""} -->
+---
 ## 5. Where is climate-regulation capacity high?
 
 Urban green infrastructure provides different levels of cooling capacity across German cities.
@@ -494,6 +501,7 @@ The map reveals that this benefit varies between German cities. This shifts the 
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## 6. From replication to exploration
 
 Reproducing the indicator map is only the starting point.
@@ -530,7 +538,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-<!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+<!-- #region editable=true deletable=true slideshow={"slide_type": ""} -->
+---
 ## Try it yourself
 
 Open data makes it possible to move beyond reproduction.
@@ -545,6 +554,7 @@ Try changing the analysis:
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## Conclusion
 
 This example moves from:
@@ -557,13 +567,15 @@ The ioerDATA replication package makes this evidence accessible for reproduction
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": ""} editable=true deletable=true -->
+---
 ## Acknowledgements
 
 This contribution builds on the broader [**ioerDATA training materials**](https://github.com/ioer-dresden/jupyter-book-ioerdata) developed at IOER.
 
-The author gratefully acknowledges **Cruickshank, Claudia** for feedback and refinement & **Dunkel, Alexander** for technical support and earlier training resources.
+>The author gratefully acknowledges **Cruickshank, Claudia** for feedback and refinement & **Dunkel, Alexander** for technical support and earlier training resources.
+---
 <!-- #endregion -->
 
-```python editable=true slideshow={"slide_type": ""}
+```python slideshow={"slide_type": ""} editable=true
 
 ```
