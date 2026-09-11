@@ -7,6 +7,60 @@
 
 
  
+## v0.23.0 (2026-09-11)
+ 
+### Bug fixes
+ 
+
+
+- Plot color for barrierfreiheit ([`459017c`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/459017c7bc9178e1ee657a62972211e94877cabe))
+
+
+
+ 
+ 
+### Documentation
+ 
+
+
+- Urban_green style fix ([`80fcf39`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/80fcf39d7fa2fb885d6dda6c8139da454aab0866))
+
+
+
+ 
+
+
+- Text revised ([`22360da`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/22360da9720b75bc504538df0ad6715156b0028c))
+
+
+
+ 
+
+
+- Revised title ([`9d0d4b2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/9d0d4b28c0d8d1ef9443e4d6a413b672ee35d60d))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- **community**: Integrate latest urban green updates by tasnim oyshi ([`7ed1594`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/7ed159405e9536599aac0f2372a2133969feb4b6))
+
+
+
+ 
+
+
+- **community**: Integrate latest transit updates by sujit sikder ([`a0e71df`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/a0e71dfb41fc11e7b2ed758792921b089c105091))
+
+
+
+ 
+ 
+ 
 ## v0.22.0 (2026-09-10)
  
 ### Bug fixes
