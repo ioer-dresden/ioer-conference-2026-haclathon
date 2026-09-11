@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.19.3
+      jupytext_version: 1.19.5
   kernelspec:
     display_name: .venv
     language: python
@@ -47,6 +47,7 @@ Helper functions in storybuilder.py can be used to:
 - `save_story`: validate the chapter writing and save the configuration. It copies the template and the styles into the site folder, brings along everything sitting in your `assets` folder, then runs the same checks over the finished config. If anything is wrong it reports every problem at once, and leaves your previous build untouched.
 
 
+
 ### The Inspiration and Storyline Sketch
 
 
@@ -61,7 +62,6 @@ So I wanted to make a story map about them. And I have the data from the starter
 
 ![Sketch of the story line](../resources/storysketch.png "Sketch of the story line")
 
-## Storybuilding
 
 ### Setup
 
@@ -87,7 +87,9 @@ from ipyleaflet import GeoJSON, Map, TileLayer, basemaps, projections
 from owslib.wcs import WebCoverageService
 from pyproj import Transformer
 
-# storybuilder.py lives in py/modules, next to tools.py
+# storybuilder.py lives in py/modules, next to tools.py, and does the story map
+# side: writing chapters, previewing them on a map, and saving the site. It is
+# imported the same way the other chapters import modules/tools.py.
 module_path = str(Path.cwd().parents[0] / "py")
 if module_path not in sys.path:
     sys.path.append(module_path)
@@ -98,8 +100,8 @@ from modules.storybuilder import (chapter_preview, geojson_layer, preview_map,
 # the GeoJSON layers, the cover image - lives here, and save_story copies the
 # whole folder into the site at the end.
 Path("assets").mkdir(exist_ok=True)
-
 ```
+
 
 ### Starting data exploration
 I started with the big picture: where herons live around the world. Herons are the family *Ardeidae*, so I search GBIF for the taxon key under that name (see the [detailed tutorial](#accessing-biodiversity-data)). Caching the result keeps the notebook from asking the API the same question twice.
@@ -129,8 +131,8 @@ else:
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(json.dumps(cache, indent=2), encoding="utf-8")
     print(f"{search_name}: fetched from GBIF, cached in {CACHE_PATH.name}")
-
 ```
+
 
 Check the fetched result:
 
@@ -164,8 +166,8 @@ m_world = Map(
     zoom=2,
     crs=projections.EPSG3857
 )
-
 ```
+
 
 ```python
 GBIF_TILES = (
@@ -195,8 +197,8 @@ gbif_layer = TileLayer(
 m_world.add(gbif_layer)
 
 preview_map(m_world)
-
 ```
+
 
 ![GBIF occurrence density for Ardeidae, worldwide](../resources/heron_map_world.png "GBIF occurrence density for Ardeidae, worldwide")
 
@@ -222,8 +224,8 @@ The empty places on this map are not empty. They are the places nobody watched. 
 """
 
 chapter_title = "Globally distributed"
-
 ```
+
 
 ```python
 chapter1 = write_chapter(title = chapter_title,
@@ -241,8 +243,8 @@ handed to it carries the layers that chapter actually uses.
 
 ```python
 chapter_preview(chapter1, m_world)
-
 ```
+
 
 ![Chapter 1 preview: the global distribution card](../resources/heron_chapter1_global.png "Chapter 1 preview: the global distribution card")
 
@@ -576,8 +578,8 @@ chapter_germany = write_chapter(
     wmslayer = DE_TILES,
     center = [7.16309, 51.20688],
     zoom = 5.5)
-
 ```
+
 
 ```python
 m_de = Map(basemap=BASEMAP, center=(51.05521, 7.38281), zoom=4.8)
@@ -585,8 +587,8 @@ m_de.add(TileLayer(url=DE_TILES, name="Ardeidae in Germany",
                    attribution='Occurrences: <a href="https://www.gbif.org">GBIF</a>',
                    max_zoom=16, opacity=0.85))
 chapter_preview(chapter_germany, m_de)
-
 ```
+
 
 ![Chapter 2 preview: occurrences zoomed to Germany](../resources/heron_chapter2_germany.png "Chapter 2 preview: occurrences zoomed to Germany")
 
@@ -683,8 +685,8 @@ m_species.add(GeoJSON(
 ))
 
 preview_map(m_species)
-
 ```
+
 
 ![Observation points coloured by species](../resources/heron_map_species.png "Observation points coloured by species")
 
@@ -693,8 +695,8 @@ and have a look at the chapter layout
 
 ```python
 chapter_preview(chapter_species, m_species)
-
 ```
+
 
 ![Chapter 3 preview: the species card](../resources/heron_chapter3_species.png "Chapter 3 preview: the species card")
 
@@ -749,8 +751,8 @@ m_urbanity.add(GeoJSON(
     },
 ))
 preview_map(m_urbanity)
-
 ```
+
 
 ![Observation points coloured by built-up share](../resources/heron_map_builtup.png "Observation points coloured by built-up share")
 
@@ -761,13 +763,13 @@ I would like to move closer to have a better view on the points. So I updated th
 chapter_urbanity["location"]["center"] = [12.24, 49.11]
 chapter_urbanity["location"]["zoom"] = 7
 m_urbanity.center = (48.40, 12.26)
-
 ```
+
 
 ```python
 chapter_preview(chapter_urbanity, m_urbanity)
-
 ```
+
 
 ![Chapter 4 preview: the urban association card](../resources/heron_chapter4_urbanity.png "Chapter 4 preview: the urban association card")
 
@@ -815,15 +817,15 @@ Together they make a good data base.
 And here are the results as geojson: a habitat suitability index for 1,371 individual
 trees in a neighbourhood in Munich. 
 
-The data are processed in QGIS 3.44 and the output is manually added to assets folder. 
+The processing steps will later be shared.
 
 ```python
 HSI_FILE = Path("assets/hsi_trees.geojson")
 hsi_features = json.loads(HSI_FILE.read_text(encoding="utf-8"))["features"]
 
 print(f"{HSI_FILE}  {len(hsi_features):,} trees, {HSI_FILE.stat().st_size/1024:.0f} KB")
-
 ```
+
 
 ```python
 HSI_RAMP = [(0, "#cfccc4"), (0.01, "#cde0c4"), (0.35, "#9cc389"),
@@ -872,15 +874,15 @@ m_trees.add(GeoJSON(
     },
 ))
 chapter_preview(chapter_trees, m_trees)
-
 ```
+
 
 ![Habitat suitability of single trees in one Munich park](../resources/heron_map_trees.png "Habitat suitability of single trees in one Munich park")
 
 
 ### The cover
 
-The last thing we make is the first thing on screen, before any map: the cover and the hook. I found an engraving of herons by John G. Warnicke after Alexander Wilson, the father of American ornithology, in the collection of the National Gallery of Art. I derived the silhouettes from it and used them on the cover. Add the illustrations to assets folder and integrate them inside the storymap as:
+The last thing we make is the first thing on screen, before any map: the cover and the hook. I found an engraving of herons by John G. Warnicke after Alexander Wilson, the father of American ornithology, in the collection of the National Gallery of Art. I derived the silhouettes from it and used them on the cover.
 
 ```python
 cover = {
