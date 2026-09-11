@@ -48,6 +48,8 @@ parts:
     title: "204: A Story Map about Herons"
   - file: notebooks/205_urban_green
     title: "205: Urban Green Cooling Benefits"
+  - file: notebooks/206_netzero_urban_mobility_insight
+    title: "206: NetZero Urban Mobility Insight"
 # ---------------------------------------------------------------
 # PROJECT INFO
 # ---------------------------------------------------------------

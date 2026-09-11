@@ -7,6 +7,193 @@
 
 
  
+## v0.22.0 (2026-09-10)
+ 
+### Bug fixes
+ 
+
+
+- Urban green image fix ([`b93d205`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/b93d20506dcd88602059a3bd7b015cb61ca5c2e7))
+
+
+
+ 
+
+
+- Fixed relative path in helper function ([`0a1efca`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/0a1efcac67f5b2778c49e2a9d4859151ff856bcb))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- Share template of storymap and helper scripts ([`fd918a0`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/fd918a07a50d62a60e8780bca50ec7a741de2842))
+
+
+
+ 
+ 
+ 
+## v0.21.1 (2026-09-09)
+ 
+### Bug fixes
+ 
+
+
+- Left merge conflict ([`c59459e`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/c59459e96ee6d29d46f5ff955965010481063445))
+
+
+
+ 
+ 
+### Documentation
+ 
+
+
+- Fix markdown code block ([`c043ad3`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/c043ad3f5d80a2593e412774e2e0db0a651a7e93))
+
+
+
+ 
+ 
+### Refactoring
+ 
+
+
+- Fix remove-cells for setup; headings & title (206) ([`59debc2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/59debc2dfdfc3dcb1246151756c53cd434905ddf))
+
+
+
+ 
+ 
+ 
+## v0.21.0 (2026-09-09)
+ 
+### Documentation
+ 
+
+
+- Register chapter 206 in toc and contributors list ([`cbf2a55`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/cbf2a5504c72761a5675edc6aba139a93dd7df71))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- **community**: Update chapter 205 (urban green) by tasnim oyshi ([`ff09553`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ff095532f9ad7ff032d0ef061f690546f020283a))
+
+
+
+ 
+
+
+- Refine urban green api workflow ([`fde1e86`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/fde1e862657de4ddfa0caa74b9b13400e4aae77b))
+
+
+
+ 
+ 
+### Refactoring
+ 
+
+
+- Use remove-cell instead of hide-cell, to hide content altogether ([`ae45585`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ae45585763e34f931eb43ba61cccf8bcc08d4db7))
+
+
+
+ 
+
+
+- Hide setup cells ([`0e83cd9`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/0e83cd98a7a135d47b6593da396cce731ddf345d))
+
+
+
+ 
+
+
+- Hide setup cells; fix title; add md/py syncs ([`ded7b3c`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/ded7b3c621a52553fc79109d1c20859f0651daaf))
+
+
+
+ 
+ 
+ 
+## v0.20.0 (2026-09-09)
+ 
+### Features
+ 
+
+
+- **community**: Integrate chapter 206 by sujit sikder & sukanto das ([`54eb2b2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/54eb2b2612688f4b4c03df7d7e37b9e526646af6))
+
+
+
+ 
+ 
+ 
+## v0.19.0 (2026-09-07)
+ 
+### Features
+ 
+
+
+- Add sujit/sukando abstract ([`eaa7dfc`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/eaa7dfc6cc57096ec755ec62ea036d589a9633d7))
+
+
+
+ 
+ 
+ 
+## v0.18.0 (2026-09-04)
+ 
+### Documentation
+ 
+
+
+- Register chapters 204 and 205 in toc and contributors list ([`486ecb2`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/486ecb2be60aa66b55f1ba63b2bbf28d5d16ef16))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- **community**: Integrate chapters 204 (tango) and 205 (tasnim) ([`6763835`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/6763835a150df02cb370b4bc32ccc38c62e16689))
+
+
+
+ 
+
+
+- Save in jupyterlab and create sibling jupytertext ([`9afb130`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/9afb130dcf1f111e6fb6d4b9d83894222eeb8844))
+
+
+
+ 
+
+
+- Add urban green haclathon contribution ([`7c7d38f`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/7c7d38f71c2381503057875fc4d43efaef5c8e0f))
+
+
+
+ 
+
+
+- Add storymap chapter ([`5109144`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/5109144850ff5348f3c8b57173e84e4a17fb77ff))
+
+
+
+ 
+ 
+ 
 ## v0.17.1 (2026-08-27)
  
 ### Bug fixes
