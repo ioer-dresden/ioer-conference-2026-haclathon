@@ -77,6 +77,7 @@ pyexec = sys.executable
 # This notebook explores that question using an openly available research dataset.
 
 # %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
+# ---
 # ## 2. From publication to reusable research data
 #
 # The analysis is based on the ioerDATA replication package:
@@ -101,6 +102,7 @@ pyexec = sys.executable
 # Instead, we can directly inspect and reuse the underlying research data.
 
 # %% [markdown] deletable=true slideshow={"slide_type": ""} editable=true
+# ---
 # ## Reproducibility first
 #
 # A scientific figure is much more useful when we can understand:
@@ -114,7 +116,8 @@ pyexec = sys.executable
 #
 # The same data can then be reused for questions that were not necessarily part of the original publication.
 
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
+# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## 3. Access the replication package
 #
 # The dataset is published through **ioerDATA**, which is based on Dataverse.
@@ -123,7 +126,7 @@ pyexec = sys.executable
 #
 # This is useful because the source of the data becomes part of the analysis itself.
 
-# %% [markdown] editable=true slideshow={"slide_type": ""}
+# %% [markdown] slideshow={"slide_type": ""} editable=true
 # ### Setup
 #
 # Import the libraries needed for this chapter
@@ -185,6 +188,7 @@ for item in files:
     print(f"  • {item['dataFile']['filename']}")
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## 3. Download the replication package
 #
 # The replication package is published on **ioerDATA** and can be accessed through the Dataverse API.
@@ -199,7 +203,7 @@ for item in files:
 #
 # > ⚠️ **Keep your API token private.** Never save it in the notebook or commit it to GitHub.
 
-# %% tags=["hide-input"] editable=true slideshow={"slide_type": "slide"}
+# %% slideshow={"slide_type": "slide"} tags=["hide-input"] editable=true
 # ioerDATA Dataverse address and dataset DOI
 base_url = "https://data.fdz.ioer.de"
 persistent_id = "doi:10.71830/AFW3N3"
@@ -338,6 +342,7 @@ for item in files:
     print(f"Downloaded: {filename} ({access})")
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true
+# ---
 # ## FAIR Data in Practice
 #
 # This replication package illustrates how the **FAIR principles** can support reproducible research:
@@ -351,6 +356,7 @@ for item in files:
 # > Restricted data can still be FAIR when access conditions are clearly described and authorised users can access the data through a transparent process.
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## 4. Load the spatial data
 #
 # The main spatial dataset is stored as a GeoPackage. We load it with GeoPandas and inspect the available indicators before mapping them.
@@ -378,7 +384,8 @@ gdf.head()
 # List all attribute columns available in the spatial dataset
 gdf.columns.tolist()
 
-# %% [markdown] editable=true slideshow={"slide_type": ""} deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# ---
 # ## 5. Where is climate-regulation capacity high?
 #
 # Urban green infrastructure provides different levels of cooling capacity across German cities.
@@ -471,6 +478,7 @@ plt.show()
 # > **How effectively does urban green infrastructure provide climate-regulation benefits to people?**
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## 6. From replication to exploration
 #
 # Reproducing the indicator map is only the starting point.
@@ -505,7 +513,8 @@ plt.tight_layout()
 # Display the finished chart
 plt.show()
 
-# %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# %% [markdown] editable=true deletable=true slideshow={"slide_type": ""}
+# ---
 # ## Try it yourself
 #
 # Open data makes it possible to move beyond reproduction.
@@ -519,6 +528,7 @@ plt.show()
 # > **Replication reproduces evidence. Reuse creates opportunities for new questions.**
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## Conclusion
 #
 # This example moves from:
@@ -530,10 +540,12 @@ plt.show()
 # The ioerDATA replication package makes this evidence accessible for reproduction, exploration, and further research.
 
 # %% [markdown] slideshow={"slide_type": ""} editable=true deletable=true
+# ---
 # ## Acknowledgements
 #
 # This contribution builds on the broader [**ioerDATA training materials**](https://github.com/ioer-dresden/jupyter-book-ioerdata) developed at IOER.
 #
-# The author gratefully acknowledges **Cruickshank, Claudia** for feedback and refinement & **Dunkel, Alexander** for technical support and earlier training resources.
+# >The author gratefully acknowledges **Cruickshank, Claudia** for feedback and refinement & **Dunkel, Alexander** for technical support and earlier training resources.
+# ---
 
-# %% editable=true slideshow={"slide_type": ""}
+# %% slideshow={"slide_type": ""} editable=true
