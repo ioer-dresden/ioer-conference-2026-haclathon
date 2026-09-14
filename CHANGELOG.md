@@ -7,6 +7,77 @@
 
 
  
+## v0.24.0 (2026-09-14)
+ 
+### Bug fixes
+ 
+
+
+- Fixed relative path in helper function ([`16e8129`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/16e81295a4abbda922b54f1744fd31dc8467494f))
+
+
+
+ 
+ 
+### Chores
+ 
+
+
+- Update artifacts ([`374da1b`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/374da1b0aaf999115ec2973d06d210985d3ce1e4))
+
+
+
+ 
+
+
+- Add missing py-versions for notebook 203 ([`b82e208`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/b82e2080d58442485d8ed0869cb8c5fc88720877))
+
+
+
+ 
+
+
+- Add missing md-versions for 203 ([`735b2ab`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/735b2abb128757e8165e00026c6ffd85f3c03d6d))
+
+
+
+ 
+
+
+- Add py-synced notebook format versions ([`69166de`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/69166de9f2cf91b6c9d0727a7fb2411b851122de))
+
+
+
+ 
+
+
+- Add md-synced notebook format versions ([`0fb948f`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/0fb948fac368e6ce7be70002d9387a8c419a0851))
+
+
+
+ 
+ 
+### Style
+ 
+
+
+- Hide setup-cell ([`06a4a40`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/06a4a40897937c4c32ee348cc5e502d6551117dc))
+
+
+
+ 
+ 
+### Features
+ 
+
+
+- Share template of storymap and helper scripts ([`db2e1f1`](https://gitlab.hrz.tu-chemnitz.de/ioer/fdz/training/hackathon-ioer-conference-2026/-/commit/db2e1f18feecb85010c90c7ac76c519ea593d8e9))
+
+
+
+ 
+ 
+ 
 ## v0.23.0 (2026-09-11)
  
 ### Bug fixes
